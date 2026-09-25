@@ -18,7 +18,7 @@ public class FreeGiveMod implements ModInitializer {
     public void onInitialize() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
             dispatcher.register(
-                CommandManager.literal("giveplayer")
+                CommandManager.literal("giveitem")
                     .then(CommandManager.argument("item", IdentifierArgumentType.identifier())
                         .suggests((context, builder) ->
                             CommandSource.suggestIdentifiers(Registries.ITEM.getIds(), builder))

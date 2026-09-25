@@ -25,7 +25,7 @@ public class ExampleMod {
     @SubscribeEvent
     public void onRegisterCommands(RegisterCommandsEvent event) {
         event.getDispatcher().register(
-            Commands.literal("giveplayer")
+            Commands.literal("giveitem")
                 .then(Commands.argument("item", ItemArgument.item(event.getBuildContext()))
                     .executes(context -> giveItem(context, 1))
                     .then(Commands.argument("count", IntegerArgumentType.integer(1, 64))

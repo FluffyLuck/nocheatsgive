@@ -1,23 +1,23 @@
 # FreeGive
 
-Two separate, full Gradle mods that add a permissionless `/giveplayer` command.
+Two separate, full Gradle mods that add a permissionless `/giveitem` command.
 
 ## Commands
 
 ```text
-/giveplayer <item> [count]
+/giveitem <item> [count]
 ```
 
 Examples:
 
 ```text
-/giveplayer minecraft:diamond 1
-/giveplayer minecraft:stone 64
+/giveitem minecraft:diamond 1
+/giveitem minecraft:stone 64
 ```
 
 The count is optional; omitting it gives the player one item.
 
-The command intentionally uses the name `giveplayer`. Registering a second `/give`
+The command intentionally uses the name `giveitem`. Registering a second `/give`
 literal would collide with the vanilla command and would not reliably remove its
 permission requirement. The command is available to players without operator
 permission because neither implementation adds a `.requires(...)` predicate.
