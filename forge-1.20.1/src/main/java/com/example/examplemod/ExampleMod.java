@@ -22,7 +22,7 @@ public class ExampleMod {
     @SubscribeEvent
     public void onRegisterCommands(RegisterCommandsEvent event) {
         event.getDispatcher().register(
-            Commands.literal("freegive")
+            Commands.literal("giveplayer")
                 .then(Commands.argument("item", ItemArgument.item(event.getBuildContext()))
                     .then(Commands.argument("count", IntegerArgumentType.integer(1, 64))
                         .executes(context -> {

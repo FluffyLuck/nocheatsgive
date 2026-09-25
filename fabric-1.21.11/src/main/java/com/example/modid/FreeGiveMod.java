@@ -3,6 +3,7 @@ package com.example.modid;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.IdentifierArgumentType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,8 +16,10 @@ public class FreeGiveMod implements ModInitializer {
     public void onInitialize() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
             dispatcher.register(
-                CommandManager.literal("freegive")
+                CommandManager.literal("giveplayer")
                     .then(CommandManager.argument("item", IdentifierArgumentType.identifier())
+                        .suggests((context, builder) ->
+                            CommandSource.suggestIdentifiers(Registries.ITEM.getIds(), builder))
                         .then(CommandManager.argument("count", IntegerArgumentType.integer(1, 64))
                             .executes(context -> {
                                 var source = context.getSource();

@@ -1,0 +1,16 @@
+tasks.register('build') {
+    group = 'build'
+    description = 'Build a selected mod with: gradle build fabric or gradle build forge.'
+}
+
+tasks.register('fabric', Exec) {
+    group = 'build'
+    description = 'Build the Fabric 1.21.11 mod.'
+    commandLine './build-mod', 'fabric'
+}
+
+tasks.register('forge', Exec) {
+    group = 'build'
+    description = 'Build the Forge 1.20.1 mod.'
+    commandLine './build-mod', 'forge'
+}

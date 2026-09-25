@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+target="${1:-}"
+root_dir="$(cd -- "$(dirname -- "$0")" && pwd)"
+system_gradle="${GRADLE_CMD:-gradle}"
+
+case "$target" in
+    fabric)
+        cd "$root_dir/fabric-1.21.11"
+        exec "$system_gradle" --no-daemon build
+        ;;
+    forge)
+        forge_gradle="${FORGE_GRADLE_CMD:-$root_dir/../../tmp/gradle-tools/gradle-8.8/bin/gradle}"
+        if [[ ! -x "$forge_gradle" ]]; then
+            forge_gradle="${GRADLE_CMD:-gradle}"
+        fi
+
+        forge_java="${FORGE_JAVA_HOME:-/tmp/java-tools/jdk-17}"
+        if [[ ! -x "$forge_java/bin/java" ]]; then
+            forge_java="${JAVA_HOME:-}"
+        fi
+        if [[ ! -x "$forge_java/bin/java" ]]; then
+            echo 'Forge requires Java 17. Set FORGE_JAVA_HOME to a Java 17 installation.' >&2
+            exit 1
+        fi
+
+        cd "$root_dir/forge-1.20.1"
+        JAVA_HOME="$forge_java" exec "$forge_gradle" --no-daemon build
+        ;;
+    *)
+        echo "Usage: $0 fabric|forge" >&2
+        exit 2
+        ;;
+esac

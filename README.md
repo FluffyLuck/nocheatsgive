@@ -1,26 +1,38 @@
 # FreeGive
 
-Two separate, full Gradle mods that add a permissionless `/freegive` command.
+Two separate, full Gradle mods that add a permissionless `/giveplayer` command.
 
 ## Commands
 
 ```text
-/freegive <item> <count>
+/giveplayer <item> <count>
 ```
 
 Examples:
 
 ```text
-/freegive minecraft:diamond 1
-/freegive minecraft:stone 64
+/giveplayer minecraft:diamond 1
+/giveplayer minecraft:stone 64
 ```
 
-The command intentionally uses the name `freegive`. Registering a second `/give`
+The command intentionally uses the name `giveplayer`. Registering a second `/give`
 literal would collide with the vanilla command and would not reliably remove its
 permission requirement. The command is available to players without operator
 permission because neither implementation adds a `.requires(...)` predicate.
 
 ## Projects
+
+## Build commands
+
+From the repository root, use either form:
+
+```text
+gradle build fabric
+gradle build forge
+```
+
+The equivalent direct command is `./build-mod fabric` or `./build-mod forge`.
+Forge uses Java 17 and Gradle 8.8; Fabric uses Java 21 and the installed Gradle.
 
 ### Forge 1.20.1
 
